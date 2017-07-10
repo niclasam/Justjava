@@ -3,6 +3,7 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,9 +23,23 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
 
         int calculatedPrice = calculatePrice();
-        String priceMesage = createOrderSummary(calculatedPrice);
+        boolean whippedCream = getToppingValue(R.id.whipped_cream_checkbox);
+        boolean chocolate = getToppingValue(R.id.chocolate_checkbox);
+        String priceMesage = createOrderSummary(calculatedPrice, whippedCream, chocolate);
         displayMessage(priceMesage);
     }
+
+    /**
+     * Gets the checked state of the whipped cream checkbox.
+     *
+     * @return the state of whipped cream checkbox
+     * @param stringId
+     */
+    private boolean getToppingValue(int stringId) {
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(stringId);
+        return whippedCreamCheckBox.isChecked();
+    }
+
 
     /**
      * Calculates the price of the order based on the current quantity.
@@ -42,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return the
      */
-    private String createOrderSummary(int price) {
+    private String createOrderSummary(int price, boolean whippedCream, boolean chocolate) {
         return "Name: Niclas\nQuantity: " + quantity + "\n"
+                + "Add whipped cream? " + whippedCream + "\n"
+                + "Add chocolate? " + chocolate + "\n"
                 + "Total: $" + (price) + "\nThank you!";
     }
 
