@@ -1,6 +1,8 @@
 package com.example.android.justjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,7 +32,29 @@ public class MainActivity extends AppCompatActivity {
         int calculatedPrice = calculatePrice(whippedCream, chocolate);
         String customerName = getCustomerName(R.id.customer_name_text);
         String priceMesage = createOrderSummary(calculatedPrice, whippedCream, chocolate, customerName);
-        displayMessage(priceMesage);
+//        displayMessage(priceMesage);
+
+        composeEmail("JustJava order for " + customerName, priceMesage);
+
+
+//        Uri geoLocation = Uri.parse("geo:47.6, -122.3");
+//
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        intent.setData(geoLocation);
+//        if (intent.resolveActivity(testgetPackageManager()) != null) {
+//            startActivity(intent);
+//        }
+    }
+
+    public void composeEmail(String subject, String message) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, "niclas@hotmail.no");
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     /**
