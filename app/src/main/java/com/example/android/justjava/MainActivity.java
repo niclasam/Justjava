@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
 
-        int calculatedPrice = calculatePrice();
         boolean whippedCream = getToppingValue(R.id.whipped_cream_checkbox);
         boolean chocolate = getToppingValue(R.id.chocolate_checkbox);
+        int calculatedPrice = calculatePrice(whippedCream, chocolate);
         String customerName = getCustomerName(R.id.customer_name_text);
         String priceMesage = createOrderSummary(calculatedPrice, whippedCream, chocolate, customerName);
         displayMessage(priceMesage);
@@ -53,14 +53,24 @@ public class MainActivity extends AppCompatActivity {
         return customerNameEdit.getText().toString();
     }
 
-
     /**
      * Calculates the price of the order based on the current quantity.
      *
      * @return the price
+     * @param whippedCream
+     * @param chocolate
      */
-    private int calculatePrice() {
+    private int calculatePrice(boolean whippedCream, boolean chocolate) {
         int pricePerCup = 5;
+
+        if (whippedCream) {
+            pricePerCup += 1;
+        }
+
+        if (chocolate) {
+            pricePerCup += 2;
+        }
+
         int totalPrice = quantity * pricePerCup;
         return totalPrice;
     }
