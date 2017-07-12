@@ -1,11 +1,13 @@
 package com.example.android.justjava;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -108,18 +110,33 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the + button is clicked.
      */
     public void increment(View view) {
-        quantity += 1;
-        displayQuantity(quantity);
-        // displayPrice(numberOfCoffees * price);
+        if (quantity<100) {
+            quantity += 1;
+            displayQuantity(quantity);
+        } else
+            showToastMessage("Your not allowed more than 100 cups of coofee a day!");
+
     }
 
     /**
      * This method is called when the + button is clicked.
      */
     public void decrement(View view) {
-        quantity -= 1;
-        displayQuantity(quantity);
-        // displayPrice(numberOfCoffees * price);
+        if (quantity > 0) {
+            quantity -= 1;
+            displayQuantity(quantity);
+        } else
+            showToastMessage("There is no such thing as a negative cup of coffee!");
+
+    }
+
+
+    public void showToastMessage(String message) {
+        Context context = getApplicationContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, message, duration);
+        toast.show();
     }
 
 }
