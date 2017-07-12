@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         int calculatedPrice = calculatePrice();
         boolean whippedCream = getToppingValue(R.id.whipped_cream_checkbox);
         boolean chocolate = getToppingValue(R.id.chocolate_checkbox);
-        String priceMesage = createOrderSummary(calculatedPrice, whippedCream, chocolate);
+        String customerName = getCustomerName(R.id.customer_name_text);
+        String priceMesage = createOrderSummary(calculatedPrice, whippedCream, chocolate, customerName);
         displayMessage(priceMesage);
     }
 
@@ -38,6 +40,17 @@ public class MainActivity extends AppCompatActivity {
     private boolean getToppingValue(int stringId) {
         CheckBox whippedCreamCheckBox = (CheckBox) findViewById(stringId);
         return whippedCreamCheckBox.isChecked();
+    }
+
+    /**
+     * Gets the name of the vustomer.
+     *
+     * @return the name of customer
+     * @param stringId
+     */
+    private String getCustomerName(int stringId) {
+        EditText customerNameEdit = (EditText) findViewById(stringId);
+        return customerNameEdit.getText().toString();
     }
 
 
@@ -57,8 +70,9 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return the
      */
-    private String createOrderSummary(int price, boolean whippedCream, boolean chocolate) {
-        return "Name: Niclas\nQuantity: " + quantity + "\n"
+    private String createOrderSummary(int price, boolean whippedCream, boolean chocolate, String customerName) {
+        return "Name: " + customerName + "\n" +
+                "Quantity: " + quantity + "\n"
                 + "Add whipped cream? " + whippedCream + "\n"
                 + "Add chocolate? " + chocolate + "\n"
                 + "Total: $" + (price) + "\nThank you!";
