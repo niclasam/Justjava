@@ -125,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the given text on the screen.
      */
-    private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        priceTextView.setText(message);
-    }
+//    private void displayMessage(String message) {
+//        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
+//        priceTextView.setText(message);
+//    }
 
     /**
      * This method is called when the + button is clicked.
