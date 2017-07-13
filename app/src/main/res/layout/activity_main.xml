@@ -22,12 +22,10 @@
             android:hint="@string/name_hint"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="@string/toppings"
             android:textAllCaps="true"
-            android:textSize="24sp" />
+            style="@style/HeaderTextStyle" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -69,12 +67,9 @@
 
         <TextView
             android:id="@+id/quantity_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:textAllCaps="true"
             android:text="@string/quantity"
-            android:textSize="24sp" />
+            style="@style/HeaderTextStyle" />
 
         <LinearLayout
             android:layout_width="match_parent"
